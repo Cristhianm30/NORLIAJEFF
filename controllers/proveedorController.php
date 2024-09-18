@@ -23,10 +23,10 @@ class ProveedorController {
     }
 
     // Obtener un proveedor por ID
-    public function obtenerProveedorPorID($ID) {
-        $sql = "SELECT * FROM proveedor WHERE ID = ?";
+    public function obtenerProveedorPorID($ID, $UsuarioID) {
+        $sql = "SELECT * FROM proveedor WHERE ID = ? AND UsuarioID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param('i', $ID);
+        $stmt->bind_param('ii', $ID, $UsuarioID);
         $stmt->execute();
         
         $resultado = $stmt->get_result()->fetch_assoc();
@@ -90,5 +90,26 @@ class ProveedorController {
         
         $stmt->close();
         return $proveedores;
+    }
+
+    public function obtenerProveedorPorNombre($nombre, $usuario_id) {
+        $sql = "SELECT * FROM proveedor WHERE Nombre = ? AND UsuarioID = ?";
+        $stmt = $this->db->prepare($sql);
+        
+        if (!$stmt) {
+            die("Error en la preparación de la consulta: " . $this->db->error);
+        }
+    
+        $stmt->bind_param('si', $nombre, $usuario_id);
+        $stmt->execute();
+        
+        $resultado = $stmt->get_result();
+    
+        if ($row = $resultado->fetch_assoc()) {
+            return new Proveedor ($row['ID'], $row['Nombre'], $row['Direccion'], $row['Telefono'], $row['UsuarioID']);
+        }
+    
+        $stmt->close();
+        return null;
     }
 }

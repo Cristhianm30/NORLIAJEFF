@@ -1,7 +1,9 @@
 <?php
 
 require_once '../models/compras.php';  
-require_once '../models/conexion.php';  
+require_once '../models/conexion.php'; 
+require_once '../controllers/productoController.php'; 
+require_once '../controllers/proveedorController.php'; 
 
 class CompraController {
     private $db;

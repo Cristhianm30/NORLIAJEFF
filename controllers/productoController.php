@@ -59,7 +59,7 @@ class ProductoController {
     
 
     // Obtener todos los productos del usuario
-    public function obtenerTodosLosProductos($usuario_id) {
+    public function obtenerTodosLosProductosPorID($usuario_id) {
         $sql = "SELECT * FROM productos WHERE UsuarioID = ?";
         $stmt = $this->db->prepare($sql);
         
@@ -79,6 +79,26 @@ class ProductoController {
         
         $stmt->close();
         return $productos;
+    }
+    public function obtenerProductoPorNombre($nombre, $usuario_id) {
+        $sql = "SELECT * FROM productos WHERE Nombre = ? AND UsuarioID = ?";
+        $stmt = $this->db->prepare($sql);
+        
+        if (!$stmt) {
+            die("Error en la preparación de la consulta: " . $this->db->error);
+        }
+    
+        $stmt->bind_param('si', $nombre, $usuario_id);
+        $stmt->execute();
+        
+        $resultado = $stmt->get_result();
+    
+        if ($row = $resultado->fetch_assoc()) {
+            return new Producto($row['ID'], $row['Nombre'], $row['Descripcion'], $row['Precio'], $row['Stock'], $row['ProveedorID']);
+        }
+    
+        $stmt->close();
+        return null;
     }
 }
 ?>

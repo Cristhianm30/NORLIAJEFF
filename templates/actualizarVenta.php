@@ -16,7 +16,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         $productoController = new ProductoController();
         $clienteController = new ClienteController();
         
-        $productos = $productoController->obtenerTodosLosProductos($_SESSION['usuario_id']);
+        $productos = $productoController->obtenerTodosLosProductosPorID($_SESSION['usuario_id']);
         $clientes = $clienteController->obtenerClientesPorUsuarioID($_SESSION['usuario_id']);
         ?>
         <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">

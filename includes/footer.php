@@ -8,6 +8,9 @@
             <a class="text-white" href="https://github.com/Cristhianm30" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-github"></i> Cristhian_Moreno
             </a>
+            <a class="text-white" href="https://github.com/morenin05" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i> Norbey_Moreno
+            </a>
         </div>
     </div>
 </footer>

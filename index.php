@@ -1,5 +1,5 @@
 <?php
-include 'includes/header.php';
+require_once 'includes/header.php';
 ?>
 
 <main>
@@ -25,5 +25,5 @@ include 'includes/header.php';
 </main>
 
 <?php
-include 'includes/footer.php';
+require_once 'includes/footer.php';
 ?>

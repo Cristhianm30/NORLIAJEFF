@@ -1,13 +1,13 @@
 <?php
-include '../includes/headerLogin.php';
+require_once '../includes/headerLogin.php';
 require_once '../controllers/clienteController.php';
-include '../controllers/autenticador.php';
+require_once '../controllers/autenticador.php';
 require_once '../models/cliente.php';
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $clienteController = new ClienteController();
-    $cliente = $clienteController->obtenerClientePorID($id); // Crear un nuevo método para obtener un cliente por ID
+    $cliente = $clienteController->obtenerClientePorID($id,$usuario_id ); // Crear un nuevo método para obtener un cliente por ID
     if ($cliente) {
         ?>
         <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
@@ -49,5 +49,5 @@ if (isset($_GET['id'])) {
 ?>
 
 <?php
-    include '../includes/footer.php';
+    require_once '../includes/footer.php';
 ?>

@@ -1,15 +1,16 @@
 <?php
-session_start();
+require_once 'autenticador.php';
 require_once '../models/ventas.php';
 require_once '../models/conexion.php';
-require_once '../controllers/ventasController.php';
-require_once '../controllers/productoController.php';
-require_once '../controllers/clienteController.php';
+require_once 'ventasController.php';
+require_once 'productoController.php';
+require_once 'clienteController.php';
+$usuario_id = $_SESSION['usuario_id'];
 
 $ventasController = new VentasController();
 $productoController = new ProductoController();
 $clienteController = new clienteController();
-$usuarioID = $_SESSION['usuario_id'];
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['accion'])) {
@@ -44,11 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $total = $_POST['total'];
                 $cantidad = $_POST['cantidad'];
                 $precio = $_POST['precio'];
-                $productoID = $_POST['producto_id'];
-                $clienteID = $_POST['cliente_id'];
-                $usuarioID = $_POST['usuario_id']; // Asegúrate de que este valor se toma del formulario
+               
 
-                $ventasController->crearVenta($fecha, $total, $cantidad, $precio, $productoID, $usuarioID, $clienteID);
+                $ventasController->crearVenta($fecha, $total, $cantidad, $precio, $producto_id, $usuario_id,  $cliente_id);
                 header('Location: ../templates/ventas.php');
                 break;
 
@@ -58,11 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $total = $_POST['total'];
                 $cantidad = $_POST['cantidad'];
                 $precio = $_POST['precio'];
-                $productoID = $_POST['producto_id'];
-                $clienteID = $_POST['cliente_id'];
-                $usuarioID = $_POST['usuario_id']; // Asegúrate de que este valor se toma del formulario
+                
 
-                $ventasController->actualizarVenta($id, $fecha, $total, $cantidad, $precio, $productoID, $usuarioID, $clienteID);
+                $ventasController->actualizarVenta($id, $fecha, $total, $cantidad, $precio, $producto_id, $usuario_id,  $cliente_id);
                 header('Location: ../templates/ventas.php');
                 break;
 

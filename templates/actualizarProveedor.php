@@ -1,14 +1,14 @@
 <?php
-include '../includes/headerLogin.php';
+require_once '../includes/headerLogin.php';
 require_once '../controllers/proveedorController.php';
-include '../controllers/autenticador.php';
+require_once '../controllers/autenticador.php';
 require_once '../models/proveedor.php';
-
+$usuario_id = $_SESSION['usuario_id'];
 // Verificar si el ID está presente y es válido
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id = (int)$_GET['id'];
     $proveedorController = new ProveedorController();
-    $proveedor = $proveedorController->obtenerProveedorPorID($id); // Obtener proveedor por ID
+    $proveedor = $proveedorController->obtenerProveedorPorID($id,$usuario_id ); // Obtener proveedor por ID
 
     if ($proveedor) {
         ?>
@@ -43,5 +43,5 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 ?>
 
 <?php
-    include '../includes/footer.php';
+    require_once '../includes/footer.php';
 ?>

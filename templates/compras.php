@@ -1,24 +1,23 @@
 <?php
-include "../includes/headerLogin.php";
-require_once '../controllers/compraController.php';
-require_once '../controllers/productoController.php';
-require_once '../controllers/proveedorController.php';
-include '../controllers/autenticador.php';
+    require_once '../controllers/autenticador.php';
+    require_once "../includes/headerLogin.php";
+    require_once '../controllers/compraController.php';
+    require_once '../controllers/productoController.php';
+    require_once '../controllers/proveedorController.php';
 
-$usuario_id = $_SESSION['usuario_id'];
-$compraController = new CompraController();
-$productoController = new ProductoController();
-$proveedorController = new ProveedorController();
+    $usuario_id = $_SESSION['usuario_id'];
+    $compraController = new CompraController();
+    $productoController = new ProductoController();
+    $proveedorController = new ProveedorController();
 
-// Obtén las compras, productos y proveedores del usuario logueado
-$compras = $compraController->obtenerTodasLasComprasPorUsuario($usuario_id);
-$productos = $productoController->obtenerTodosLosProductosPorID($usuario_id);
-$proveedores = $proveedorController->obtenerTodosLosProveedoresPorID($usuario_id);
+    // Obtén las compras, productos y proveedores del usuario logueado
+    $compras = $compraController->obtenerTodasLasComprasPorUsuario($usuario_id);
+    $productos = $productoController->obtenerTodosLosProductosPorID($usuario_id);
+    $proveedores = $proveedorController->obtenerTodosLosProveedoresPorID($usuario_id);
 
-
-// Verifica si hay un mensaje de error
-$error_message = isset($_SESSION['error_message']) ? $_SESSION['error_message'] : '';
-unset($_SESSION['error_message']); // Limpia el mensaje de error después de mostrarlo
+    // Verifica si hay un mensaje de error
+    $error_message = isset($_SESSION['error_message']) ? $_SESSION['error_message'] : '';
+    unset($_SESSION['error_message']); // Limpia el mensaje de error después de mostrarlo
 ?>
 
 <main class="main">
@@ -160,5 +159,5 @@ unset($_SESSION['error_message']); // Limpia el mensaje de error después de mos
 
 
 <?php
-    include '../includes/footer.php';
+    require_once '../includes/footer.php';
 ?>

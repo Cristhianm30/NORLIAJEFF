@@ -1,9 +1,9 @@
 <?php
-include '../includes/headerLogin.php';
+require_once '../includes/headerLogin.php';
 require_once '../controllers/compraController.php';
 require_once '../controllers/productoController.php';
 require_once '../controllers/proveedorController.php';
-include '../controllers/autenticador.php';
+require_once '../controllers/autenticador.php';
 
 // Verificar si el ID está presente y es válido
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
@@ -76,5 +76,5 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 ?>
 
 <?php
-include '../includes/footer.php';
+require_once '../includes/footer.php';
 ?>

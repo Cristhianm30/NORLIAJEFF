@@ -1,7 +1,7 @@
 <?php
 require_once '../includes/headerLogin.php';
 require_once '../controllers/proveedorController.php';
-include '../controllers/autenticador.php';
+require_once '../controllers/autenticador.php';
 
 // El usuario_id se obtiene de la sesión para asegurar que se muestran los datos correctos
 $usuario_id = $_SESSION['usuario_id'];
@@ -76,5 +76,5 @@ $proveedores = $controller->obtenerTodosLosProveedoresPorID($usuario_id);
 </main>
 
 <?php
-include '../includes/footer.php';
+require_once '../includes/footer.php';
 ?>

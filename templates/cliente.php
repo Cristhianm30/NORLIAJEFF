@@ -1,10 +1,9 @@
 <?php
 require_once '../includes/headerLogin.php';
 require_once '../controllers/clienteController.php';
-include '../controllers/autenticador.php';
-
-// El usuario_id se obtiene de la sesión para asegurar que se muestran los datos correctos
+require_once '../controllers/autenticador.php';
 $usuario_id = $_SESSION['usuario_id'];
+
 $controller = new ClienteController();
 $clientes = $controller->obtenerTodosLosClientesPorID($usuario_id);
 ?>
@@ -86,5 +85,5 @@ $clientes = $controller->obtenerTodosLosClientesPorID($usuario_id);
 </main>
 
 <?php
-include '../includes/footer.php';
+require_once '../includes/footer.php';
 ?>

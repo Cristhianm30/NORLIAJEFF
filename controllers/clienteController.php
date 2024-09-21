@@ -12,21 +12,21 @@ class ClienteController {
     }
 
     // Crear un nuevo cliente
-    public function crearCliente($Nombre, $Apellido, $Correo, $Direccion, $Telefono, $UsuarioID) {
+    public function crearCliente($Nombre, $Apellido, $Correo, $Direccion, $Telefono, $usuario_id) {
         $sql = "INSERT INTO cliente (Nombre, Apellido, Correo, Direccion, Telefono, UsuarioID) 
                 VALUES (?, ?, ?, ?, ?, ?)";
         
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param('sssssi', $Nombre, $Apellido, $Correo, $Direccion, $Telefono, $UsuarioID);
+        $stmt->bind_param('ssssss', $Nombre, $Apellido, $Correo, $Direccion, $Telefono, $usuario_id);
         
         return $stmt->execute();
     }
 
     // Obtener un cliente por ID
-    public function obtenerClientePorID($ID, $UsuarioID) {
+    public function obtenerClientePorID($ID, $usuario_id) {
         $sql = "SELECT * FROM cliente WHERE ID = ? AND UsuarioID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param('ii', $ID, $UsuarioID);
+        $stmt->bind_param('is', $ID, $usuario_id);
         $stmt->execute();
         
         $resultado = $stmt->get_result()->fetch_assoc();
@@ -38,12 +38,12 @@ class ClienteController {
     }
 
     // Actualizar un cliente
-    public function actualizarCliente($ID, $Nombre, $Apellido, $Correo, $Direccion, $Telefono, $UsuarioID) {
+    public function actualizarCliente($ID, $Nombre, $Apellido, $Correo, $Direccion, $Telefono, $usuario_id) {
         $sql = "UPDATE cliente SET Nombre = ?, Apellido = ?, Correo = ?, Direccion = ?, Telefono = ?, UsuarioID = ? 
                 WHERE ID = ?";
         
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param('ssssssi', $Nombre, $Apellido, $Correo, $Direccion, $Telefono, $UsuarioID, $ID);
+        $stmt->bind_param('ssssssi', $Nombre, $Apellido, $Correo, $Direccion, $Telefono, $usuario_id, $ID);
         
         return $stmt->execute();
     }
@@ -78,7 +78,7 @@ class ClienteController {
             die("Error en la preparación de la consulta: " . $this->db->error);
         }
     
-        $stmt->bind_param('i', $usuario_id);
+        $stmt->bind_param('s', $usuario_id);
         $stmt->execute();
         
         $resultado = $stmt->get_result();
@@ -100,7 +100,7 @@ class ClienteController {
             die("Error en la preparación de la consulta: " . $this->db->error);
         }
     
-        $stmt->bind_param('i', $usuario_id);
+        $stmt->bind_param('s', $usuario_id);
         $stmt->execute();
         
         $resultado = $stmt->get_result();
@@ -122,7 +122,7 @@ class ClienteController {
             die("Error en la preparación de la consulta: " . $this->db->error);
         }
     
-        $stmt->bind_param('si', $nombre, $usuario_id);
+        $stmt->bind_param('ss', $nombre, $usuario_id);
         $stmt->execute();
         
         $resultado = $stmt->get_result();

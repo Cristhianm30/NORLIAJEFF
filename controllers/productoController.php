@@ -12,47 +12,47 @@ class ProductoController {
     }
 
     // Crear un nuevo producto
-    public function crearProducto($Nombre, $Descripcion, $Precio, $Stock, $ProveedorID, $UsuarioID) {
-        $sql = "INSERT INTO productos (Nombre, Descripcion, Precio, Stock, ProveedorID, UsuarioID) 
-                VALUES (?, ?, ?, ?, ?, ?)";
+    public function crearProducto($Nombre, $Descripcion, $Precio, $Stock, $usuario_id) {
+        $sql = "INSERT INTO productos (Nombre, Descripcion, Precio, Stock, UsuarioID) 
+                VALUES (?, ?, ?, ?, ?)";
         
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param('ssdiis', $Nombre, $Descripcion, $Precio, $Stock, $ProveedorID, $UsuarioID);
+        $stmt->bind_param('ssdis', $Nombre, $Descripcion, $Precio, $Stock, $usuario_id);
         
         return $stmt->execute();
     }
 
     // Obtener un producto por ID
-    public function obtenerProductoPorID($ID, $UsuarioID) {
+    public function obtenerProductoPorID($ID, $usuario_id) {
         $sql = "SELECT * FROM productos WHERE ID = ? AND UsuarioID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param('ii', $ID, $UsuarioID);
+        $stmt->bind_param('is', $ID, $usuario_id);
         $stmt->execute();
         
         $resultado = $stmt->get_result()->fetch_assoc();
         if ($resultado) {
-            return new Producto($resultado['ID'], $resultado['Nombre'], $resultado['Descripcion'], $resultado['Precio'], $resultado['Stock'], $resultado['ProveedorID']);
+            return new Producto($resultado['ID'], $resultado['Nombre'], $resultado['Descripcion'], $resultado['Precio'], $resultado['Stock']);
         }
         
         return null;
     }
 
     // Actualizar un producto
-    public function actualizarProducto($ID, $Nombre, $Descripcion, $Precio, $Stock, $ProveedorID, $UsuarioID) {
-        $sql = "UPDATE productos SET Nombre = ?, Descripcion = ?, Precio = ?, Stock = ?, ProveedorID = ? 
+    public function actualizarProducto($ID, $Nombre, $Descripcion, $Precio, $Stock, $usuario_id) {
+        $sql = "UPDATE productos SET Nombre = ?, Descripcion = ?, Precio = ?, Stock = ?,  
                 WHERE ID = ? AND UsuarioID = ?";
         
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param('ssdiisi', $Nombre, $Descripcion, $Precio, $Stock, $ProveedorID, $ID, $UsuarioID);
+        $stmt->bind_param('ssdiis', $Nombre, $Descripcion, $Precio, $Stock, $ID, $usuario_id);
         
         return $stmt->execute();
     }
 
     // Eliminar un producto
-    public function eliminarProducto($ID, $UsuarioID) {
+    public function eliminarProducto($ID, $usuario_id) {
         $sql = "DELETE FROM productos WHERE ID = ? AND UsuarioID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param('ii', $ID, $UsuarioID);
+        $stmt->bind_param('is', $ID, $usuario_id);
         
         return $stmt->execute();
     }
@@ -67,14 +67,14 @@ class ProductoController {
             die("Error en la preparación de la consulta: " . $this->db->error);
         }
 
-        $stmt->bind_param('i', $usuario_id);
+        $stmt->bind_param('s', $usuario_id);
         $stmt->execute();
         
         $resultado = $stmt->get_result();
 
         $productos = [];
         while ($row = $resultado->fetch_assoc()) {
-            $productos[] = new Producto($row['ID'], $row['Nombre'], $row['Descripcion'], $row['Precio'], $row['Stock'], $row['ProveedorID']);
+            $productos[] = new Producto($row['ID'], $row['Nombre'], $row['Descripcion'], $row['Precio'], $row['Stock']);
         }
         
         $stmt->close();
@@ -88,13 +88,13 @@ class ProductoController {
             die("Error en la preparación de la consulta: " . $this->db->error);
         }
     
-        $stmt->bind_param('si', $nombre, $usuario_id);
+        $stmt->bind_param('ss', $nombre, $usuario_id);
         $stmt->execute();
         
         $resultado = $stmt->get_result();
     
         if ($row = $resultado->fetch_assoc()) {
-            return new Producto($row['ID'], $row['Nombre'], $row['Descripcion'], $row['Precio'], $row['Stock'], $row['ProveedorID']);
+            return new Producto($row['ID'], $row['Nombre'], $row['Descripcion'], $row['Precio'], $row['Stock']);
         }
     
         $stmt->close();

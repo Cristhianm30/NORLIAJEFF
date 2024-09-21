@@ -1,6 +1,5 @@
 <?php
-// Iniciar la sesión
-session_start();
+require_once '../controllers/autenticador.php';
 
 // Verificar si el usuario está autenticado
 if (!isset($_SESSION['usuario_nombre'])) {

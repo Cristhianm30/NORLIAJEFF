@@ -1,10 +1,10 @@
 <?php
-    include "../includes/headerLogin.php";
+    require_once '../controllers/autenticador.php';
+    require_once "../includes/headerLogin.php";
     require_once '../controllers/ventasController.php';
     require_once '../controllers/productoController.php';
     require_once '../controllers/clienteController.php';
-    include '../controllers/autenticador.php';
-
+ 
     $usuario_id = $_SESSION['usuario_id'];
     $ventasController = new VentasController();
     $productoController = new ProductoController();
@@ -43,7 +43,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="cliente_id" class="form-label">Cliente</label>
-                    <input type="text" class="form-control" name="cleinte_name" id="clente_id" list="clientes" required>
+                    <input type="text" class="form-control" name="cliente_name" id="cliente_id" list="clientes" required>
                     <datalist id="clientes">
                         <?php foreach ($clientes as $cliente): ?>
                             <option value="<?php echo htmlspecialchars($cliente->getNombre()); ?>">
@@ -156,5 +156,5 @@
 </main>
 
 <?php
-    include '../includes/footer.php';
+    require_once '../includes/footer.php';
 ?>

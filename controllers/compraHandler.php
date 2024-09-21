@@ -1,15 +1,16 @@
 <?php
-session_start();
+require_once 'autenticador.php';
 require_once '../models/compras.php';
 require_once '../models/conexion.php';
-require_once '../controllers/compraController.php';
-require_once '../controllers/productoController.php';
-require_once '../controllers/proveedorController.php';
+require_once 'compraController.php';
+require_once 'productoController.php';
+require_once 'proveedorController.php';
+$usuario_id = $_SESSION['usuario_id'];
 
 $compraController = new CompraController();
 $productoController = new ProductoController();
 $proveedorController = new ProveedorController();
-$usuario_id = $_SESSION['usuario_id'];
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['accion'])) {

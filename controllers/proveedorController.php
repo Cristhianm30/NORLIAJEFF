@@ -17,7 +17,7 @@ class ProveedorController {
                 VALUES (?, ?, ?, ?)";
         
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param('sssi', $Nombre, $Direccion, $Telefono, $UsuarioID);
+        $stmt->bind_param('ssss', $Nombre, $Direccion, $Telefono, $UsuarioID);
         
         return $stmt->execute();
     }
@@ -26,7 +26,7 @@ class ProveedorController {
     public function obtenerProveedorPorID($ID, $UsuarioID) {
         $sql = "SELECT * FROM proveedor WHERE ID = ? AND UsuarioID = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param('ii', $ID, $UsuarioID);
+        $stmt->bind_param('is', $ID, $UsuarioID);
         $stmt->execute();
         
         $resultado = $stmt->get_result()->fetch_assoc();
@@ -43,7 +43,7 @@ class ProveedorController {
                 WHERE ID = ?";
         
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param('sssii', $Nombre, $Direccion, $Telefono, $UsuarioID, $ID);
+        $stmt->bind_param('ssssi', $Nombre, $Direccion, $Telefono, $UsuarioID, $ID);
         
         return $stmt->execute();
     }
@@ -78,7 +78,7 @@ class ProveedorController {
             die("Error en la preparación de la consulta: " . $this->db->error);
         }
     
-        $stmt->bind_param('i', $usuario_id);
+        $stmt->bind_param('s', $usuario_id);
         $stmt->execute();
         
         $resultado = $stmt->get_result();
@@ -100,7 +100,7 @@ class ProveedorController {
             die("Error en la preparación de la consulta: " . $this->db->error);
         }
     
-        $stmt->bind_param('si', $nombre, $usuario_id);
+        $stmt->bind_param('ss', $nombre, $usuario_id);
         $stmt->execute();
         
         $resultado = $stmt->get_result();

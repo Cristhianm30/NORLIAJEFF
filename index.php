@@ -14,7 +14,7 @@ require_once 'includes/header.php';
                     para el inventariado de su negocio.
                 </p>
                 <p>
-                    <a href="/Norliajeff-v.00/templates/singUp.php" class="remarcara">
+                    <a href="templates/singUp.php" class="remarcara">
                         <span class="remarcar">Para empezar, crea tu cuenta de usuario.</span>
                     </a> 
                 </p>

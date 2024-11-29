@@ -27,7 +27,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                 </div>
                 <div class="mb-3">
                     <label for="telefono" class="form-label">Teléfono</label>
-                    <input type="tel" class="form-control" name="telefono" value="<?php echo htmlspecialchars($proveedor->getTelefono()); ?>" required>
+                    <input type="tel" class="form-control" name="telefono" value="<?php echo htmlspecialchars($proveedor->getTelefono()); ?>" pattern="\d{10}" maxlength="10" title="El número de teléfono debe tener 10 dígitos." oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
                 </div>
                 <input type="hidden" name="usuario_id" value="<?php echo htmlspecialchars($proveedor->getUsuarioID()); ?>">
                 <button type="submit" class="btn btn-primary" name="BtnActualizar" value="OK">Actualizar</button>

@@ -14,7 +14,7 @@
 <body class="fondo">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand text-black font-weight-bold" href="#">NORLIAJEFF</a>
+            <a class="navbar-brand text-black font-weight-bold" href="../index.php">NORLIAJEFF</a>
 
             <!-- Botón de menú para dispositivos móviles -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mi-menu" aria-controls="mi-menu" aria-expanded="false" aria-label="Toggle navigation">

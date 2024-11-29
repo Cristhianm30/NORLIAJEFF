@@ -69,7 +69,7 @@
                 
                 <div class="mb-3">
                     <label for="total" class="form-label">Total</label>
-                    <input type="number" step="0.01" class="form-control" name="total" id="total" readonly>
+                    <input type="number" step="0.01" class="form-control" name="total" id="total" disabled readonly>
                 </div>
 
                 <input type="hidden" name="usuario_id" value="<?php echo htmlspecialchars($usuario_id); ?>">

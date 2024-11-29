@@ -7,7 +7,7 @@ require_once '../models/cliente.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $clienteController = new ClienteController();
-    $cliente = $clienteController->obtenerClientePorID($id,$usuario_id ); // Crear un nuevo método para obtener un cliente por ID
+    $cliente = $clienteController->obtenerClientePorID($id,$_SESSION['usuario_id'] ); // Crear un nuevo método para obtener un cliente por ID
     if ($cliente) {
         ?>
         <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">

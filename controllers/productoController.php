@@ -39,7 +39,7 @@ class ProductoController {
 
     // Actualizar un producto
     public function actualizarProducto($ID, $Nombre, $Descripcion, $Precio, $Stock, $usuario_id) {
-        $sql = "UPDATE productos SET Nombre = ?, Descripcion = ?, Precio = ?, Stock = ?,  
+        $sql = "UPDATE productos SET Nombre = ?, Descripcion = ?, Precio = ?, Stock = ?  
                 WHERE ID = ? AND UsuarioID = ?";
         
         $stmt = $this->db->prepare($sql);

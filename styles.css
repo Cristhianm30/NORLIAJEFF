@@ -100,9 +100,10 @@ footer {
 }
 
 /* Estilo para desabilitar campos de texto */
-input:disabled {
-    background-color: #d3cece; /* Un gris claro */
-    color: #6c757d;          /* Texto más tenue */
-    border-color: #d3d0d0;   /* Opcional: Cambiar el borde */
-    cursor: not-allowed;     /* Cambia el cursor a uno que indique "no disponible" */
+.readonly-textbox { 
+    background-color: 
+    #ccc4c4; /* Color de fondo */ 
+    color: #000000; /* Color del texto */
+    cursor: not-allowed; /* Cursor de tipo no permitido*/
+    user-select: none; /* Deshabilitar la selección de texto*/
 }

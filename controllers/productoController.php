@@ -41,6 +41,10 @@ class ProductoController {
     public function actualizarProducto($ID, $Nombre, $Descripcion, $Precio, $Stock, $usuario_id) {
         $sql = "UPDATE productos SET Nombre = ?, Descripcion = ?, Precio = ?, Stock = ?  
                 WHERE ID = ? AND UsuarioID = ?";
+
+        $sql = "UPDATE productos SET Nombre = ?, Descripcion = ?, Precio = ?, Stock = ?
+        WHERE ID = ? AND UsuarioID = ?";
+
         
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param('ssdiis', $Nombre, $Descripcion, $Precio, $Stock, $ID, $usuario_id);
